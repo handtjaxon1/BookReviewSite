@@ -15,7 +15,7 @@ const UserSchema = new mongoose.Schema({
     },
     favorites: { // Favorites is a list of book titles the user likes (could also be a list of book IDs depending on how we pass the data)
         type: [String],
-        default: undefined // Change to '[]' if you want an empty array by default (or just remove this line, same result either way)
+        default: [] // Change to '[]' if you want an empty array by default (or just remove this line, same result either way)
     }
 }, { timestamps: true });
 

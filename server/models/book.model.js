@@ -25,6 +25,6 @@ const BookSchema = new mongoose.Schema({
         max: 5,
         default: 5
     }
-});
+}, { timestamps: true });
 
 module.exports = mongoose.model("Book", BookSchema);

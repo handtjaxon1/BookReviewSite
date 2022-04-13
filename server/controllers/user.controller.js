@@ -1,13 +1,25 @@
 const User = require("../models/user.model");
 
 module.exports = {
-    getUser: (request, response) => {
+    getUserByID: (request, response) => {
         User.findOne({_id: request.params.id}) // params.id is looking for the 'id' paramater in the url
             .then((user) => {
                 response.json(user);
             })
             .catch((error) => {
                 console.log(error);
+                response.status(404).json(error);
+            })
+    },
+    getUserByLogin: (request, response) => {
+        User.findOne({username: request.params.username, password: request.params.password})
+            .then((user) => {
+                console.log("Hello");
+                response.json(user);
+            })
+            .catch((error) => {
+                console.log(error);
+                console.log("Request body: " + request.body);
                 response.status(404).json(error);
             })
     },

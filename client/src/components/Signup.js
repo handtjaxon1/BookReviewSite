@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import {
         Alert,
@@ -10,11 +10,13 @@ import {
         Button
     } from "reactstrap";
 
-
-function Login(props) {
-    const { loggedIn, setLoggedIn } = props;
+function Signup(props) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [confirm, setConfirm] = useState("");
+
+    // Get passed down state
+    const { loggedIn, setLoggedIn } = props;
 
     // State to capture errors and handle validations
     const [errors, setErrors] = useState([]);
@@ -22,15 +24,17 @@ function Login(props) {
     // Allow navigation
     const navigate = useNavigate();
 
-    function handleOnLogin(e) {
-        console.log("Loggin in...");
+    function handleOnSignup(e) {
         e.preventDefault();
-        // TODO Login not working right now, need to fix
-        axios.get("http://localhost:8000/api/users/" + username + "/" + password)
+        axios.post("http://localhost:8000/api/users", {
+            username,
+            password
+        })
             .then((response) => {
-                console.log(response.data);
+                console.log(response.data)
                 setLoggedIn(true);
-                navigate("/profile/" + response.data._id);
+                navigate("/profile/" + response.data._id)
+                
             })
             .catch((error) => {
                 console.log(error);
@@ -38,12 +42,17 @@ function Login(props) {
             })
     };
 
+    // Verify that the normal and confirm password fields match
+    function passwordError() {
+        return confirm !== password;
+    };
+
     return (
         <div>
-            <h1>Login page</h1>
-            <Form onSubmit={handleOnLogin}>
+            <h1>Signup page</h1>
+            <Form onSubmit={handleOnSignup}>
                 <FormGroup>
-                    <Label>Username</Label>
+                    <Label htmlFor="username">Username</Label>
                     <Input
                         type="text"
                         id="username"
@@ -51,13 +60,14 @@ function Login(props) {
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
                     />
+                    {/* Display errors related to username input */}
                     { errors.username ?
                         <Alert color="danger">{errors.username.message}</Alert>
                         : null
                     }
                 </FormGroup>
                 <FormGroup>
-                    <Label>Password</Label>
+                    <Label htmlFor="password">Password</Label>
                     <Input
                         type="password"
                         id="password"
@@ -65,16 +75,31 @@ function Login(props) {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                     />
+                    {/* Display errors related to password input */}
                     { errors.password ?
                         <Alert color="danger">{errors.password.message}</Alert>
                         : null
                     }
                 </FormGroup>
-                <Button type="submit">Login</Button>
+                <FormGroup>
+                    <Label htmlFor="confirm">Confirm Password</Label>
+                    <Input
+                        type="password"
+                        id="confirm"
+                        name="confirm"
+                        value={confirm}
+                        onChange={(e) => setConfirm(e.target.value)}
+                    />
+                    {/* Display error if the password and confirm password aren't the same */}
+                    { passwordError() ?
+                        <Alert color="danger">Passwords don't match.</Alert>
+                        : null
+                    }
+                </FormGroup>
+                <Button type="submit">Sign Up</Button>
             </Form>
-            <Link to="/signup">Sign Up Instead!</Link>
         </div>
     );
 }
 
-export default Login;
+export default Signup;
