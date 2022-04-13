@@ -27,14 +27,14 @@ function BookActions(props) {
 
     // Navigate to the add review page and pass this book's ID to the new page
     function reviewBook(id) {
-        navigate(`/reviews/add/${id}`);
+        navigate("/reviews/add/" + id);
     }
 
     return (
         <>
-            <Button onClick={() => editBook(book._id)}>Edit</Button>
-            <Button onClick={() => deleteBook(book._id)}>Delete</Button>
-            <Button onClick={() => reviewBook(book._id)}>Review</Button>
+            <Button onClick={() => reviewBook(book._id)} className="btn-dark mx-1">Review</Button>
+            <Button onClick={() => editBook(book._id)} className="btn-dark mx-1">Edit</Button>
+            <Button onClick={() => deleteBook(book._id)} className="btn-danger mx-1">Delete</Button>
         </>
     );
 }

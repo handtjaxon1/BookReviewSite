@@ -12,11 +12,9 @@ function Profile(props) {
             .then((response) => {
                 setUser(response.data);
                 console.log("Retrieved response on Profile for a specific user.");
-                console.log(response.data)
             })
             .catch((error) => {
                 console.log(error);
-
             })
     }, []);
 
