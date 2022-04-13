@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 // Establish a connection to the database
 // TODO Change database connection to refer to cloud hosted database
-mongoose.connect("mongodb://localhost/book_review", {
+mongoose.connect(process.env.CONNECTION_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })

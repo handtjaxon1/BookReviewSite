@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
-const PORT = 8000;
+require("dotenv").config(); // Allows using environment variables
+const PORT = process.env.PORT;
 
 // Allow JSON objects and strings/arrays to be passed on the server
 app.use(express.json());
@@ -10,7 +11,10 @@ app.use(express.urlencoded({extended: true}));
 const cors = require("cors");
 app.use(cors());
 
+// TODO Consider refactoring routes to use express.Router. So these lines would look like 'app.use()
 // Load in the routes for the project
+require("./routes/user.routes")(app);
+require("./routes/book.routes")(app);
 
 // Connect to the database
 require("./config/mongoose.config");
