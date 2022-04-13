@@ -5,11 +5,11 @@ import { Routes, Route } from "react-router-dom";
 // Component imports
 import Navigation from "./components/Navigation";
 import Home from "./components/Home";
-import Books from "./components/Books";
+import Books from "./components/book/Books";
 import Reviews from "./components/Reviews";
-import Login from "./components/Login";
+import Login from "./components//login/Login";
 import Profile from "./components/Profile";
-import Signup from "./components/Signup";
+import Signup from "./components/login/Signup";
 
 function App() {
   // State that tracks if the user is currently logged in
