@@ -7,10 +7,13 @@ function EditBook(props) {
     const { id } = useParams();
     const [book, setBook] = useState({});
 
+    // Tracks errors from input. This is server side validation
     const [errors, setErrors] = useState([]);
 
+    // Used to navigate to different routes
     const navigate = useNavigate();
 
+    // Called when the component renders
     useEffect(() => {
         axios.get("http://localhost:8000/api/books/" + id)
             .then((response) => {
@@ -22,6 +25,7 @@ function EditBook(props) {
             })
     }, [id]);
 
+    // Update the book and navigate back to the books page
     function handleOnSubmit(e) {
         e.preventDefault();
         axios.put("http://localhost:8000/api/books/" + id, {
@@ -40,6 +44,7 @@ function EditBook(props) {
             })
     }
 
+    // Update the book vars as it's changed
     function handleOnChange(e) {
         const { name, value } = e.target;
         setBook((prevState) => ({
@@ -85,7 +90,7 @@ function EditBook(props) {
                         type="select"
                         id="genre"
                         name="genre"
-                        defaultValue=""
+                        value={book.genre}
                         onChange={handleOnChange}>
                             <option value="" disabled>-- Choose Genre --</option>
                             <option value="Adventure">Adventure</option>

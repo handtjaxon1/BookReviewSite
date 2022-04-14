@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Form, FormGroup, Label, Input, Button, Alert } from "reactstrap";
 
@@ -30,13 +30,16 @@ function AddBook(props) {
                 navigate("/books");
             })
             .catch((error) => {
+                console.log(error);
                 setErrors(error.response.data.errors);
             })
     };
 
     return (
-        <div>
-            <h1>Add Book</h1>
+        <div className="container">
+            <div>
+                <h1>Add Book</h1>
+            </div>
             <Form onSubmit={handleOnSubmit}>
                 <FormGroup>
                     <Label htmlFor="title">Title</Label>
@@ -47,10 +50,6 @@ function AddBook(props) {
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
                     />
-                    { errors.title ?
-                        <Alert color="danger">{errors.title.message}</Alert>
-                        : null
-                    }
                 </FormGroup>
                 <FormGroup>
                     <Label htmlFor="author">Author</Label>
@@ -61,10 +60,6 @@ function AddBook(props) {
                         value={author}
                         onChange={(e) => setAuthor(e.target.value)}
                     />
-                    { errors.author ?
-                        <Alert color="danger">{errors.author.message}</Alert>
-                        : null
-                    }
                 </FormGroup>
                 <FormGroup>
                     <Label htmlFor="genre">Genre</Label>
@@ -74,23 +69,19 @@ function AddBook(props) {
                         name="genre"
                         defaultValue=""
                         onChange={(e) => setGenre(e.target.value)}>
-                            <option value="" disabled>-- Choose Genre --</option>
+                            <option value="" disabled hidden>--Choose Genre--</option>
                             <option value="Adventure">Adventure</option>
-                            <option value="Classic" >Classic</option>
-                            <option value="Crime" >Crime</option>
-                            <option value="Fantasy" >Fantasy</option>
-                            <option value="Historical Fiction" >Historical Fiction</option>
-                            <option value="History" >History</option>
-                            <option value="Horror" >Horror</option>
-                            <option value="Mystery" >Mystery</option>
-                            <option value="Romance" >Romance</option>
-                            <option value="Sci-Fi" >Sci-Fi</option>
-                            <option value="Thriller" >Thriller</option>
+                            <option value="Classic">Classic</option>
+                            <option value="Crime">Crime</option>
+                            <option value="Fantasy">Fantasy</option>
+                            <option value="Historical Fiction">Historical Fiction</option>
+                            <option value="History">History</option>
+                            <option value="Horror">Horror</option>
+                            <option value="Mystery">Mystery</option>
+                            <option value="Romance">Romance</option>
+                            <option value="Sci-Fi">Sci-Fi</option>
+                            <option value="Thriller">Thriller</option>
                     </Input>
-                    { errors.genre ?
-                        <Alert color="danger">{errors.genre.message}</Alert>
-                        : null
-                    }
                 </FormGroup>
                 <FormGroup>
                     <Label htmlFor="description">Description</Label>
@@ -99,15 +90,14 @@ function AddBook(props) {
                         id="description"
                         name="description"
                         value={description}
+                        rows="10"
                         onChange={(e) => setDescription(e.target.value)}
-                        rows={10}
                     />
-                    { errors.description ?
-                        <Alert color="danger">{errors.description.message}</Alert>
-                        : null
-                    }
                 </FormGroup>
-                <Button type="submit">Add</Button>
+                <div className="row justify-content-center">
+                    <Button type="submit" color="dark" className="col-2 mx-2">Add</Button>
+                    <Link to={"/books"} className="btn btn-dark col-2 mx-2">Back</Link>
+                </div>
             </Form>
         </div>
     );
