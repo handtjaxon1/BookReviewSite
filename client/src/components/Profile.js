@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { Container } from "reactstrap";
 
 function Profile(props) {
     const { id } = useParams();
@@ -19,9 +20,9 @@ function Profile(props) {
     }, []);
 
     return (
-        <div>
+        <Container>
             <h1>Profile page for {user ? user.username : "N/A"}</h1>
-        </div>
+        </Container>
     );
 }
 

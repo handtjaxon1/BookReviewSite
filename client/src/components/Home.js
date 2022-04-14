@@ -11,9 +11,15 @@ function Home(params) {
             height: "100vh",
             textAlign: "center"
             }}>
-            <div>
-                <h1 className="display-1 text-light">Home page</h1>
-                <Link to={"/books"} className="btn btn-dark btn-lg">Start Reading!</Link>
+            <div style={{
+                height: "min(800px, 100vh)",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center"
+            }}>
+                <h1 className="display-1 text-light py-5">Home page</h1>
+                <Link to={"/books"} className="btn btn-dark btn-lg my-5">Start Reading!</Link>
             </div>
             {/* <img src="ReadingCoverImage.jpg" alt="large open book"></img> */}
         </div>

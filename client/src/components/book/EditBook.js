@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, Link } from "react-router-dom";
 import axios from "axios";
-import { Form, FormGroup, Label, Input, Button, Alert } from "reactstrap";
+import { Form, FormGroup, Label, Input, Button, Alert, Container } from "reactstrap";
 
 function EditBook(props) {
     const { id } = useParams();
@@ -53,7 +53,7 @@ function EditBook(props) {
     };
 
     return (
-        <div>
+        <Container>
             <h1>Edit <span>{book.title}</span></h1>
             <Form onSubmit={handleOnSubmit}>
                 <FormGroup>
@@ -125,9 +125,12 @@ function EditBook(props) {
                         : null
                     }
                 </FormGroup>
-                <Button type="submit">Update</Button>
+                <div className="row justify-content-center">
+                    <Button type="submit" color="dark" className="col-2 mx-2">Update</Button>
+                    <Link to={"/books"} className="btn btn-dark col-2 mx-2">Back</Link>
+                </div>
             </Form>
-        </div>
+        </Container>
     );
 }
 

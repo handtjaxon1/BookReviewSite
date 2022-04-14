@@ -7,7 +7,8 @@ import {
         FormGroup,
         Label,
         Input,
-        Button
+        Button,
+        Container
     } from "reactstrap";
 
 
@@ -39,7 +40,7 @@ function Login(props) {
     };
 
     return (
-        <div>
+        <Container>
             <h1>Login page</h1>
             <Form onSubmit={handleOnLogin}>
                 <FormGroup>
@@ -70,10 +71,12 @@ function Login(props) {
                         : null
                     }
                 </FormGroup>
-                <Button type="submit">Login</Button>
+                <div className="row justify-content-center">
+                    <Button type="submit" color="dark" className="col-2 mx-2">Login</Button>
+                    <Link to={"/signup"} className="btn btn-primary col-2 mx-2">Sign Up Instead!</Link>
+                </div>
             </Form>
-            <Link to="/signup">Sign Up Instead!</Link>
-        </div>
+        </Container>
     );
 }
 

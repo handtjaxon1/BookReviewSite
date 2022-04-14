@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { Form, FormGroup, Label, Input, Table } from "reactstrap";
+import { Form, FormGroup, Label, Input, Table, Container } from "reactstrap";
 import BookRow from "./BookRow";
 
 function Books(params) {
@@ -26,7 +26,7 @@ function Books(params) {
     };
 
     return (
-        <div className="container">
+        <Container>
             <div className="d-flex justify-content-between align-items-center">
                 <h1>Books page</h1>
                 <Link to={"/books/add"} className="btn btn-dark">Add Book</Link>
@@ -59,7 +59,7 @@ function Books(params) {
                     {books.map((book, index) => <BookRow book={book} index={index}/>)}
                 </tbody>
             </Table>
-        </div>
+        </Container>
     );
 }
 

@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { Container } from "reactstrap";
 
 function ReviewBook(props) {
     const { id } = useParams();
@@ -18,9 +19,9 @@ function ReviewBook(props) {
     }, [id]);
 
     return (
-        <div>
-            <h1>Review Book: { book ? book.title : null}</h1>
-        </div>
+        <Container>
+            <h1>Review { book ? book.title : null}</h1>
+        </Container>
     );
 }
 

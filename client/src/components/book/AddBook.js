@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { Form, FormGroup, Label, Input, Button, Alert } from "reactstrap";
+import { Form, FormGroup, Label, Input, Button, Alert, Container } from "reactstrap";
 
 function AddBook(props) {
     // TODO Refactor this to use useReducer maybe?
@@ -36,10 +36,8 @@ function AddBook(props) {
     };
 
     return (
-        <div className="container">
-            <div>
-                <h1>Add Book</h1>
-            </div>
+        <Container>
+            <h1>Add Book</h1>
             <Form onSubmit={handleOnSubmit}>
                 <FormGroup>
                     <Label htmlFor="title">Title</Label>
@@ -99,7 +97,7 @@ function AddBook(props) {
                     <Link to={"/books"} className="btn btn-dark col-2 mx-2">Back</Link>
                 </div>
             </Form>
-        </div>
+        </Container>
     );
 }
 
