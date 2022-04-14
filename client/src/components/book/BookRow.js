@@ -1,5 +1,7 @@
 import React from "react";
-import BookActions from "./BookActions";
+import { Link } from "react-router-dom";
+import BookRowActions from "./BookRowActions";
+
 
 // Component that displays all of the information for a book as a row in a table
 function BookRow(props) {
@@ -7,12 +9,14 @@ function BookRow(props) {
     return (
         <>
             <tr key={index}>
-                <td>{book.title}</td>
+                <td>
+                    <Link to={"/books/" + book._id}>{book.title}</Link>
+                </td>
                 <td>{book.author}</td>
                 <td>{book.genre}</td>
                 <td>{book.rating}</td>
                 <td>
-                    <BookActions book={book}/>
+                    <BookRowActions book={book}/>
                 </td>
             </tr>
         </>

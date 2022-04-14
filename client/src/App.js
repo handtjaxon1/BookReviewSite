@@ -8,6 +8,7 @@ import Home from "./components/Home";
 import Books from "./components/book/Books";
 import AddBook from "./components/book/AddBook";
 import EditBook from "./components/book/EditBook";
+import ViewBook from "./components/book/ViewBook";
 import Reviews from "./components/review/Reviews";
 import ReviewBook from "./components/review/ReviewBook";
 import Login from "./components//login/Login";
@@ -29,6 +30,7 @@ function App() {
         <Route path="/books" element={<Books />} />
         <Route path="/books/add" element={<AddBook />} />
         <Route path="/books/:id/edit" element={<EditBook />} />
+        <Route path="/books/:id" element={<ViewBook />} />
 
         {/* Review pages */}
         <Route path="/reviews" element={<Reviews />} />

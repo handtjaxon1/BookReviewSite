@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { Form, FormGroup, Label, Input, Table, Container } from "reactstrap";
+import { Form, FormGroup, Input, Table, Container } from "reactstrap";
 import BookRow from "./BookRow";
 
-function Books(params) {
+function Books(props) {
     const [books, setBooks] = useState([]);
 
     useEffect(() => {

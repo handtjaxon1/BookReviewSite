@@ -4,7 +4,7 @@ import axios from "axios";
 import { Button } from "reactstrap";
 
 // Component representing a list of actions (using buttons) available for books in a BookRow
-function BookActions(props) {
+function BookRowActions(props) {
     const { book } = props;
     const navigate = useNavigate();
 
@@ -39,4 +39,4 @@ function BookActions(props) {
     );
 }
 
-export default BookActions;
+export default BookRowActions;
