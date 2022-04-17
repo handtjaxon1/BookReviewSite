@@ -13,9 +13,9 @@ const UserSchema = new mongoose.Schema({
         required: [true, "Password is required."],
         minlength: [8, "Password must be a minimum of 8 characters."]
     },
-    favorites: { // Favorites is a list of book titles the user likes (could also be a list of book IDs depending on how we pass the data)
-        type: [String],
-        default: [] // Change to '[]' if you want an empty array by default (or just remove this line, same result either way)
+    favorites: { // Favorites is a list of books the user likes (uses the ObjectId of the book)
+        type: [ObjectId],
+        default: []
     }
 }, { timestamps: true });
 

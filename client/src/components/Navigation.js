@@ -18,7 +18,7 @@ function Navigation(props) {
             <Container className="d-flex justify-content-between align-items-center">
                 <NavbarBrand>
                     <Link to={"/"} className="link-light">
-                        <img src="BetterReadsLogo.png" height="48px" width="48px" alt="better-reads-logo" style={{marginRight: "1rem", color: ""}}/>
+                        <img src={process.env.PUBLIC_URL + "/BetterReadsLogo.png"} height="48px" width="48px" alt="logo" style={{marginRight: "1rem", color: ""}}/>
                         Better Reads
                     </Link>
                 </NavbarBrand>

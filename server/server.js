@@ -15,6 +15,7 @@ app.use(cors());
 // Load in the routes for the project
 require("./routes/user.routes")(app);
 require("./routes/book.routes")(app);
+require("./routes/review.routes")(app);
 
 // Connect to the database
 require("./config/mongoose.config");
