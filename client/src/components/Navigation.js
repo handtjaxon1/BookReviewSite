@@ -1,17 +1,29 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import {
-        Navbar,
-        Nav,
-        NavbarBrand,
-        NavItem,
-        NavLink,
-        Container
-    }
-    from "reactstrap";
+import React, { useEffect, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { Navbar, Nav, NavbarBrand, NavItem, NavLink, Container } from "reactstrap";
 
 function Navigation(props) {
     const { loggedIn, setLoggedIn } = props;
+
+    const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    useEffect(() => {
+        const token = user?.token;
+
+        // JWT
+
+        setUser(JSON.parse(localStorage.getItem("profile")));
+    }, [location]);
+
+    const logout = () => {
+        dispatch({ type: "LOGOUT" });
+        navigate("/");
+        setUser(null);
+    };
 
     return(
         <Navbar className="navbar-dark bg-dark">
@@ -37,11 +49,16 @@ function Navigation(props) {
                     {/* Conditional rendering to show logout versus login depending on if the user is logged in */}
                     <NavItem>
                         <NavLink>
-                            { loggedIn ?
+                            { user ?
+                                <Link to={""} onClick={logout} className="link-light">Logout</Link>
+                                :
+                                <Link to={"/auth"} className="link-light">Login</Link>
+                            }
+                            {/* { loggedIn ?
                                 <Link to={"/"} onClick={(e) => setLoggedIn(false)} className="link-light">Logout</Link>
                                 :
                                 <Link to={"/login"} className="link-light">Login</Link>
-                            }
+                            } */}
                         </NavLink>
                     </NavItem>
                 </Nav>

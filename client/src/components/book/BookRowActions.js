@@ -11,7 +11,7 @@ function BookRowActions(props) {
     // Navigate to the edit page for the selected book
     function editBook(id) {
         navigate(`/books/${id}/edit`)
-    }
+    };
 
     // Deletes the specified book from the book collection
     function deleteBook(id) {
@@ -23,12 +23,12 @@ function BookRowActions(props) {
                 console.log(error);
                 // TODO Consider navigating to an error page based on the status of the response
             })
-    }
+    };
 
     // Navigate to the add review page and pass this book's ID to the new page
     function reviewBook(id) {
         navigate("/reviews/add/" + id);
-    }
+    };
 
     return (
         <>

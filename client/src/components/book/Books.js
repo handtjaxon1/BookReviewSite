@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import axios from "axios";
 import { Form, FormGroup, Input, Table, Container } from "reactstrap";
 import BookRow from "./BookRow";
 
 function Books(props) {
     const [books, setBooks] = useState([]);
+    const location = useLocation();
 
     useEffect(() => {
         axios.get("http://localhost:8000/api/books")
@@ -18,7 +19,7 @@ function Books(props) {
                 console.log(error);
                 // TODO Consider navigating to an error page based on the status of the response
             })
-    }, []);
+    }, [location]);
 
     // TODO Implement searching through an API and filtering only books with titles containing
     // text that makes the search text as it's typed, effectually making it a live search
