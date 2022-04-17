@@ -10,6 +10,7 @@ function Books(props) {
     useEffect(() => {
         axios.get("http://localhost:8000/api/books")
             .then((response) => {
+                console.log("Retrieving books...");
                 console.log(response);
                 setBooks(response.data);
             })

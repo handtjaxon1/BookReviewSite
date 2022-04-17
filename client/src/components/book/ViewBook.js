@@ -8,12 +8,23 @@ import ViewBookReview from "./ViewBookReview";
 function ViewBook(props) {
     const { id } = useParams();
     const [book, setBook] = useState({});
+    const [reviews, setReviews] = useState([])
+
+    const bookId = id;
 
     useEffect(() => {
         axios.get("http://localhost:8000/api/books/" + id)
             .then((response) => {
                 console.log(response.data);
                 setBook(response.data);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+        axios.get("http://localhost:8000/api/reviews/" + bookId)
+            .then((response) => {
+                console.log(response.data);
+                setReviews(response.data);
             })
             .catch((error) => {
                 console.log(error);
@@ -45,14 +56,11 @@ function ViewBook(props) {
                 <div className="my-3 p-5">
                     <div className="d-flex align-items-center px-2">
                         <h2>Reviews</h2>
-                        <p>Rating: 4.5/5</p>
+                        <p>Overall Rating: {book.rating}</p>
                     </div>
                     {/* List of reviews */}
                     <div className="my-3">
-                        <ViewBookReview></ViewBookReview>
-                        <ViewBookReview></ViewBookReview>
-                        <ViewBookReview></ViewBookReview>
-                        <ViewBookReview></ViewBookReview>
+                        { reviews ? reviews.map((review, index) => <ViewBookReview />) : "No reviews yet" }
                     </div>
                 </div>
             </div>

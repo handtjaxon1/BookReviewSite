@@ -114,11 +114,11 @@ function EditBook(props) {
                     <Label htmlFor="description">Description</Label>
                     <Input
                         type="textarea"
+                        rows="10"
                         id="description"
                         name="description"
                         value={book.description}
                         onChange={handleOnChange}
-                        rows={10}
                     />
                     { errors.description ?
                         <Alert color="danger">{errors.description.message}</Alert>
@@ -127,7 +127,7 @@ function EditBook(props) {
                 </FormGroup>
                 <div className="row justify-content-center">
                     <Button type="submit" color="dark" className="col-2 mx-2">Update</Button>
-                    <Link to={"/books"} className="btn btn-dark col-2 mx-2">Back</Link>
+                    <Link to={"/books"} className="btn btn-dark col-2 mx-2">Cancel</Link>
                 </div>
             </Form>
         </Container>

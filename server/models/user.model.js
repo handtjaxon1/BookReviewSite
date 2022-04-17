@@ -13,8 +13,21 @@ const UserSchema = new mongoose.Schema({
         required: [true, "Password is required."],
         minlength: [8, "Password must be a minimum of 8 characters."]
     },
+    firstName: {
+        type: String,
+        required: [true, "First name is required."],
+        minlength: [3, "First name must be a minimum of 3 characters."],
+    },
+    lastName: {
+        type: String,
+        required: [true, "Last name is required."],
+        minlength: [3, "Last name must be a minimum of 3 characters."],
+    },
+    email: {
+        type: String
+    },
     favorites: { // Favorites is a list of books the user likes (uses the ObjectId of the book)
-        type: [ObjectId],
+        type: [mongoose.SchemaTypes.ObjectId],
         default: []
     }
 }, { timestamps: true });

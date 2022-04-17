@@ -85,16 +85,16 @@ function AddBook(props) {
                     <Label htmlFor="description">Description</Label>
                     <Input
                         type="textarea"
+                        rows="10"
                         id="description"
                         name="description"
                         value={description}
-                        rows="10"
                         onChange={(e) => setDescription(e.target.value)}
                     />
                 </FormGroup>
                 <div className="row justify-content-center">
                     <Button type="submit" color="dark" className="col-2 mx-2">Add</Button>
-                    <Link to={"/books"} className="btn btn-dark col-2 mx-2">Back</Link>
+                    <Link to={"/books"} className="btn btn-dark col-2 mx-2">Cancel</Link>
                 </div>
             </Form>
         </Container>

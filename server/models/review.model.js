@@ -1,14 +1,14 @@
 const mongoose = require("mongoose");
 
 const ReviewSchema = new mongoose.Schema({
-    // Reviewer prefills to the id of the user reviewing the book
-    reviewer: {
-        type: ObjectId,
+    // UserId gets set by a form automatically to the id of the user reviewing the book
+    userId: {
+        type: mongoose.SchemaTypes.ObjectId,
         required: true
     },
-    // Book prefills to the id of the book being reviewed
-    book: {
-        type: ObjectId,
+    // BookId gets set by a form automatically to the id of the book being reviewed
+    bookId: {
+        type: mongoose.SchemaTypes.ObjectId,
         required: true
     },
     rating: {
@@ -25,4 +25,3 @@ const ReviewSchema = new mongoose.Schema({
 }, { timestampes: true });
 
 module.exports = mongoose.model("Review", ReviewSchema);
-module.exports = ReviewSchema;
