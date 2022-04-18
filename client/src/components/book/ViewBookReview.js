@@ -1,19 +1,33 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 
 function ViewBookReview(props) {
+    const { review } = props;
+    const [user, setUser] = useState({});
+
+    useEffect(() => {
+        axios.get("http://localhost:8000/api/users/" + review.userId)
+            .then((response) => {
+                setUser(response.data);
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+    }, []);
+
     return (
-        <div className="border rounded p-2 my-3">
+        <div className="p-3 my-3 card-shadow card-border">
         {/* Review Header */}
         <div>
-            <h3>John Smith</h3>
-            <p>3.7/5</p>
-        </div>
-        {/* Review Body */}
-        <div>
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum dolorem voluptatibus libero necessitatibus accusantium similique ad, magni labore, harum, numquam a! Odit maxime laborum, repellendus esse corrupti optio quae eius. Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum dolorem voluptatibus libero necessitatibus accusantium similique ad, magni labore, harum, numquam a! Odit maxime laborum, repellendus esse corrupti optio quae eius.
+            <h3 className="review-name">{user ? user.firstName + " " + user.lastName : "N/A"}</h3>
+            <p className="review-rating">
+                <span className="review-rating-user">{review ? review.rating : "0" }</span> / 5
             </p>
         </div>
+        {/* Review Body */}
+        <p className="review-body preserve-whitespace">
+            {review && (review.body)}
+        </p>
     </div>
     );
 }

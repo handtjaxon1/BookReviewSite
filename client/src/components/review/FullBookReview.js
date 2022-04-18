@@ -25,18 +25,21 @@ function FullBookReview(props) {
     }, []);
 
     return (
-        <div className="d-flex border rounded border-dark p-3"> {/* Needs 1px, light, rounded, border and a shadow effect */}
-            <img src={process.env.PUBLIC_URL + "/BookCover_01.png"} alt="book-cover"></img>
+        <div className="d-flex p-3 my-5 card-shadow card-border"> {/* Needs 1px, light, rounded, border and a shadow effect */}
+            <img src={process.env.PUBLIC_URL + "/BookCover_01.png"} alt="book-cover" className="book-cover"></img>
             <div className="w-100">
                 <div className="d-flex justify-content-between">
-                    <h3>{book?.title}</h3>
-                    <p>{book?.author} | {book?.genre}</p>
+                    <h3 className="book-title">{book?.title}</h3>
+                    <p className="book-subheader">
+                        <span className="book-author">{book?.author}</span> |
+                        <span className="book-genre"> {book?.genre}</span>
+                    </p>
                 </div>
                 <div className="d-flex justify-content-between">
-                    <h4>{user?.firstName} {user?.lastName} says</h4>
-                    <p>{review?.rating} / 5</p>
+                    <h4 className="review-name">{user?.firstName} {user?.lastName} says</h4>
+                    <p className="review-rating">{review?.rating} / 5</p>
                 </div>
-                <div>
+                <div className="preserve-whitespace">
                     {review?.body}
                 </div>
             </div>

@@ -4,7 +4,7 @@ import axios from "axios";
 import { Form, FormGroup, Label, Input, Button, Alert, Container } from "reactstrap";
 
 function AddBook(props) {
-    // TODO Refactor this
+    // TODO Refactor this into just one state of 'formData'
     // Properties for a book
     const [title, setTitle] = useState("");
     const [author, setAuthor] = useState("");
@@ -38,7 +38,7 @@ function AddBook(props) {
     };
 
     return (
-        <Container>
+        <Container className="py-5">
             <h1>Add Book</h1>
             <Form onSubmit={handleOnSubmit}>
                 <FormGroup>

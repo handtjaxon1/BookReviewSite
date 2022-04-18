@@ -11,3 +11,63 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* 'Card' styles. Used on reviews and book cards */
+.card-shadow {
+  box-shadow: 0px 5px 5px -7px #000000, 0px 5px 10px 3px rgba(0,0,0,0.25);
+}
+
+.card-border {
+  border: 1px solid rgba(137,137,137,0.9);
+  border-radius: 5px;
+}
+
+/* Book related styles */
+.book-title {
+  font-size: 2.5rem;
+}
+
+.book-subheader {
+  font-size: 1.5rem;
+}
+
+.book-author {
+  font-size: 1.5rem;
+  font-weight: 300;
+}
+
+.book-genre {
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+
+.book-description {
+  font-size: 1.15rem;
+}
+
+.book-cover {
+  height: 256px;
+  width: 256px;
+}
+
+/* Review related styles */
+.review-name {
+  font-size: 1.5rem;
+}
+
+.review-rating {
+  font-size: 1.25rem;
+  font-weight: 400;
+}
+
+.review-rating-user {
+  font-weight: 300;
+}
+
+.review-body {
+  font-size: 1.15rem;
+}
+
+.preserve-whitespace {
+  white-space: pre-wrap;
+}

@@ -10,7 +10,7 @@ import EditBook from "./components/book/EditBook";
 import ViewBook from "./components/book/ViewBook";
 import Reviews from "./components/review/Reviews";
 import ReviewBook from "./components/review/ReviewBook";
-import Profile from "./components/Profile";
+import Profile from "./components/profile/Profile";
 import Auth from "./components/login/Auth";
 
 function App() {

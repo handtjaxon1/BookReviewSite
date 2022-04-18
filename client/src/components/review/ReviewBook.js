@@ -47,7 +47,7 @@ function ReviewBook(props) {
     }
 
     return (
-        <Container>
+        <Container className="py-5">
             <h1>Review { book ? book.title : "N/A" }</h1>
             <Form onSubmit={handleOnSubmit}>
                 <Input type="text" id="userId" name="userId" value={userId} hidden readOnly/>

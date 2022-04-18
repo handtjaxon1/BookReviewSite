@@ -10,7 +10,7 @@ function BookRowActions(props) {
 
     // Navigate to the edit page for the selected book
     function editBook(id) {
-        navigate(`/books/${id}/edit`)
+        navigate(`/books/${id}/edit`);
     };
 
     // Deletes the specified book from the book collection

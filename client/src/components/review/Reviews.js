@@ -8,13 +8,13 @@ function Reviews(params) {
 
     useEffect(() => {
         axios.get("http://localhost:8000/api/reviews")
-            .then((response) => {
-                console.log("Retrieving all reviews...");
+            .then((response) => {;
                 setReviews(response.data);
             })
             .catch((error) => {
                 console.log(error);
             })
+            
     }, []);
 
     return (
@@ -22,7 +22,7 @@ function Reviews(params) {
             <h1 className="text-center">Latest Reviews</h1>
             <div>
                 {/* Add a row for each review in the database */}
-                { reviews.sort((a, b) => (a.createdAt > b.createdAt) ? 1 : -1).map((review, index) => <FullBookReview review={review} index={index}/>) }
+                { reviews.sort((a, b) => (a._id < b._id) ? 1 : -1).map((review, index) => <FullBookReview review={review} index={index}/>) }
             </div>
         </Container>
     );

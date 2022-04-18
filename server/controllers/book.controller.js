@@ -7,7 +7,7 @@ function checkAuthentication(req, res) {
 module.exports = {
     // Create a book
     createBook: (request, response) => {
-        checkAuthentication(request, response);
+        // checkAuthentication(request, response);
         Book.create(request.body)
             .then((book) => {
                 response.json(book);
@@ -38,7 +38,7 @@ module.exports = {
     },
     // Edit/update a book
     updateBook: (request, response) => {
-        checkAuthentication(request, response);
+        // checkAuthentication(request, response);
         Book.findOneAndUpdate({ _id: request.params.id }, request.body, { new: true, runValidators: true })
         .then((book) => {
             response.json(book);
@@ -49,7 +49,7 @@ module.exports = {
     },
     // Delete a book
     deleteBook: (request, response) => {
-        checkAuthentication(request, response);
+        // checkAuthentication(request, response);
         Book.deleteOne({ _id: request.params.id })
         .then((book) => {
             response.json(book);

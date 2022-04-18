@@ -53,8 +53,8 @@ function EditBook(props) {
     };
 
     return (
-        <Container>
-            <h1>Edit <span>{book.title}</span></h1>
+        <Container className="py-5">
+            <h1>Edit {book.title}</h1>
             <Form onSubmit={handleOnSubmit}>
                 <FormGroup>
                     <Label htmlFor="title">Title</Label>
