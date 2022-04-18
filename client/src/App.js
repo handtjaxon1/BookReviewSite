@@ -11,8 +11,6 @@ import EditBook from "./components/book/EditBook";
 import ViewBook from "./components/book/ViewBook";
 import Reviews from "./components/review/Reviews";
 import ReviewBook from "./components/review/ReviewBook";
-import Login from "./components//login/Login";
-import Signup from "./components/login/Signup";
 import Profile from "./components/Profile";
 import Auth from "./components/login/Auth";
 
@@ -39,8 +37,6 @@ function App() {
 
         {/* User pages */}
         <Route path="/auth" element={<Auth />}/>
-        <Route path="/login" element={<Login loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>} />
-        <Route path="/signup" element={<Signup loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>} />
         <Route path="/profile/:id" element={<Profile />}/>
       </Routes>
     </div>

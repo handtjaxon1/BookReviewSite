@@ -13,18 +13,6 @@ import authReducer from './components/login/AuthReducer';
 const reducers = combineReducers({ authReducer })
 const store = createStore(reducers, compose(applyMiddleware(thunk)))
 
-// React 17
-// ReactDOM.render(
-//   <React.StrictMode>
-//     <Provider store={store}>
-//       <BrowserRouter>
-//         <App />
-//       </BrowserRouter>
-//     </Provider>
-//   </React.StrictMode>,
-//   document.getElementById('root')
-// );
-
 // React 18
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

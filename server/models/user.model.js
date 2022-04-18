@@ -2,16 +2,21 @@ const mongoose = require("mongoose");
 
 // Create a model for a User in our database
 const UserSchema = new mongoose.Schema({
-    username: {
+    email: {
         type: String,
-        required: [true, "Username is required."],
-        minlength: [3, "Username must be a minimum of 3 characters."],
-        unique: [true, "Username is already taken, please choose a new one."],
+        required: [true, "Email is required."],
+        unique: [true, "Email is already in use. Please choose a new one, or sign in if you have an exisiting account."]
     },
     password: {
         type: String,
         required: [true, "Password is required."],
         minlength: [8, "Password must be a minimum of 8 characters."]
+    },
+    username: {
+        type: String,
+        required: [true, "Username is required."],
+        minlength: [3, "Username must be a minimum of 3 characters."],
+        unique: [true, "Username is already taken, please choose a new one."],
     },
     firstName: {
         type: String,
@@ -22,9 +27,6 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: [true, "Last name is required."],
         minlength: [3, "Last name must be a minimum of 3 characters."],
-    },
-    email: {
-        type: String
     },
     favorites: { // Favorites is a list of books the user likes (uses the ObjectId of the book)
         type: [mongoose.SchemaTypes.ObjectId],

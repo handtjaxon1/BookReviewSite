@@ -1,8 +1,13 @@
 const Review = require("../models/review.model");
 
+function checkAuthentication(req, res) {
+    if (!req.userId) return response.json({ message: "Unauthenticated. Unable to create review." });
+};
+
 module.exports = {
     // Create a review
     createReview: (request, response) => {
+        checkAuthentication(request, response);
         Review.create(request,body)
             .then((review) => {
                 response.json(review);
@@ -36,6 +41,7 @@ module.exports = {
     },
     // Get all reviews by user Id
     getReviewsByUser: (request, response) => {
+        checkAuthentication(request, response);
         Review.find({ reviewer: request.params.userId })
             .then((reviews) => {
                 response.json(reviews);
@@ -58,6 +64,7 @@ module.exports = {
     },
     // Edit/update a review
     updateReview: (request, response) => {
+        checkAuthentication(request, response);
         Review.findOneAndUpdate({ _id: request.params.id }, request,body, { new: true, runValidators: true })
             .then((review) => {
                 response.json(review);
@@ -69,6 +76,7 @@ module.exports = {
     },
     // Delete a review
     deleteReview: (request, response) => {
+        checkAuthentication(request, response);
         Review.deleteOne({ _id: request.params.id })
             .then((review) => {
                 response.json(review);

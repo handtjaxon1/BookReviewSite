@@ -1,22 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import decode from "jwt-decode";
 import { Navbar, Nav, NavbarBrand, NavItem, NavLink, Container } from "reactstrap";
 
 function Navigation(props) {
-    const { loggedIn, setLoggedIn } = props;
 
-    const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
+    const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const location = useLocation();
 
     useEffect(() => {
         const token = user?.token;
-
-        // JWT
-
-        setUser(JSON.parse(localStorage.getItem("profile")));
+        if (token) {
+            const decodedToken = decode(token);
+            if (decodedToken.exp * 1000 < new Date().getTime()) {
+                logout();
+            }
+        }
+        setUser(JSON.parse(localStorage.getItem("user")));
     }, [location]);
 
     const logout = () => {

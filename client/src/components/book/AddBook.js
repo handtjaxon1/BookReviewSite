@@ -4,12 +4,13 @@ import axios from "axios";
 import { Form, FormGroup, Label, Input, Button, Alert, Container } from "reactstrap";
 
 function AddBook(props) {
-    // TODO Refactor this to use useReducer maybe?
+    // TODO Refactor this
     // Properties for a book
     const [title, setTitle] = useState("");
     const [author, setAuthor] = useState("");
     const [genre, setGenre] = useState("");
     const [description, setDescription] = useState("");
+    const token = JSON.parse(localStorage.getItem("user"));
 
     // Holds any server side validation errors
     const [errors, setErrors] = ([]);
@@ -19,6 +20,8 @@ function AddBook(props) {
 
     function handleOnSubmit(e) {
         e.preventDefault();
+        console.log("Hello");
+        console.log(token.token);
         axios.post("http://localhost:8000/api/books", {
             title,
             author,
@@ -31,7 +34,9 @@ function AddBook(props) {
             })
             .catch((error) => {
                 console.log(error);
-                setErrors(error.response.data.errors);
+                if (error.response) {
+                    setErrors(error.response.data.errors);
+                }
             })
     };
 

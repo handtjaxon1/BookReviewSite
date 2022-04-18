@@ -1,4 +1,5 @@
 const ReviewController = require("../controllers/review.controller");
+const auth = require("../middleware/auth.middleware")
 
 module.exports = (app) => {
     app.post("/api/reviews", ReviewController.createReview);

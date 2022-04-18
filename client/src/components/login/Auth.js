@@ -4,18 +4,30 @@ import { Container, Form, Button } from "reactstrap";
 import { GoogleLogin } from "react-google-login";
 import { useDispatch } from "react-redux";
 import AuthInput from "./AuthInput";
+import { signIn, signUp } from "./AuthActions";
+
+const initialState = { email: "", password: "", confirm: "", username: "", firstName: "", lastName: "" };
 
 function Auth(props) {
     const [isSignup, setIsSignup] = useState(false);
+    const [formData, setFormData] = useState(initialState);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     function handleOnSubmit(e) {
         e.preventDefault();
+        console.log(formData);
+
+        if (isSignup) {
+            dispatch(signUp(formData, navigate));
+        } else {
+            dispatch(signIn(formData, navigate));
+        }
     };
 
     function handleChange(e) {
-        e.preventDefault();
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
     };
 
     function switchMode(e) {
@@ -48,10 +60,11 @@ function Auth(props) {
                     { isSignup && (
                     <>
                         <AuthInput type="text" name="firstName" label="First Name" handleChange={handleChange}/>
-                        <AuthInput type="text" name="lastname" label="Last Name" handleChange={handleChange}/>
+                        <AuthInput type="text" name="lastName" label="Last Name" handleChange={handleChange}/>
+                        <AuthInput type="text" name="username" label="Username" handleChange={handleChange}/>
                     </>
                     )}
-                    <AuthInput type="text" name="username" label="Username" handleChange={handleChange}/>
+                    <AuthInput type="email" name="email" label="Email Address" handleChange={handleChange}/>
                     <AuthInput type="password" name="password" label="Password" handleChange={handleChange}/>
                     { isSignup && (
                     <>

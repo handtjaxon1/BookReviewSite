@@ -18,11 +18,13 @@ const BookSchema = new mongoose.Schema({
         required: [true, "A description of the book is required."]
     },
     rating: {
-        type: Number
+        type: Number,
+        default: 5.0
     },
     image: {
         type: Buffer,
-        contentType: String
+        contentType: String,
+        default: []
     }
     // We don't actually need this because the review model has a book object ID so we can just get all reviews with a matching ID
     // I'm preferring to do it this way because reviews can grow unbounded, so if we store them all in a single book then it can

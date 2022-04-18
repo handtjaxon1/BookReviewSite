@@ -1,4 +1,5 @@
 const BookController = require("../controllers/book.controller");
+const auth = require("../middleware/auth.middleware");
 
 module.exports = (app) => {
     app.post("/api/books", BookController.createBook);
