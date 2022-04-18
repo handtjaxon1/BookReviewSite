@@ -14,7 +14,6 @@ module.exports = {
             })
             .catch((error) => {
                 console.log(error);
-                response.status(404).json(error);
             })
     },
     // Get all books
@@ -25,7 +24,6 @@ module.exports = {
             })
             .catch((error) => {
                 console.log(error);
-                response.status(404).json(error);
             })
     },
     // Get one book
@@ -36,7 +34,6 @@ module.exports = {
         })
         .catch((error) => {
             console.log(error);
-            response.status(404).json(error);
         })
     },
     // Edit/update a book
@@ -48,7 +45,6 @@ module.exports = {
         })
         .catch((error) => {
             console.log(error);
-            response.status(404).json(error);
         })
     },
     // Delete a book
@@ -60,7 +56,7 @@ module.exports = {
         })
         .catch((error) => {
             console.log(error);
-            response.status(404).json(error);
+            response.json(error);
         })
     }
 };

@@ -1,20 +1,19 @@
 const Review = require("../models/review.model");
 
 function checkAuthentication(req, res) {
-    if (!req.userId) return response.json({ message: "Unauthenticated. Unable to create review." });
+    if (!req.userId) return res.json({ message: "Unauthenticated. Unable to create review." });
 };
 
 module.exports = {
     // Create a review
     createReview: (request, response) => {
         checkAuthentication(request, response);
-        Review.create(request,body)
+        Review.create(request.body)
             .then((review) => {
                 response.json(review);
             })
             .catch((error) => {
                 console.log(error);
-                response.status(404).json(error);
             })
     },
     // Get a review by ID
@@ -25,7 +24,6 @@ module.exports = {
             })
             .catch((error) => {
                 console.log(error);
-                response.status(404).json(error);
             })
     },
     // Get all reviews
@@ -36,7 +34,6 @@ module.exports = {
             })
             .catch((error) => {
                 console.log(error);
-                response.status(404).json(error);
             })
     },
     // Get all reviews by user Id
@@ -48,7 +45,6 @@ module.exports = {
             })
             .catch((error) => {
                 console.log(error);
-                response.status(404).json(error);
             })
     },
     // Get all reviews by book Id
@@ -59,19 +55,17 @@ module.exports = {
             })
             .catch((error) => {
                 console.log(error);
-                response.status(404).json(error);
             })
     },
     // Edit/update a review
     updateReview: (request, response) => {
         checkAuthentication(request, response);
-        Review.findOneAndUpdate({ _id: request.params.id }, request,body, { new: true, runValidators: true })
+        Review.findOneAndUpdate({ _id: request.params.id }, request.body, { new: true, runValidators: true })
             .then((review) => {
                 response.json(review);
             })
             .catch((error) => {
                 console.log(error);
-                response.status(404).json(error);
             })
     },
     // Delete a review
@@ -83,7 +77,6 @@ module.exports = {
             })
             .catch((error) => {
                 console.log(error);
-                response.status(404).json(error);
             })
     }
 }

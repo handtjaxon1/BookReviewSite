@@ -17,9 +17,12 @@ function ReviewBook(props) {
         axios.get("http://localhost:8000/api/books/" + id)
             .then((response) => {
                 setBook(response.data);
-                // TODO Change so user ID is set based on the currently logged in User. Get info from session or cookie storage
-                setUserId("TODO");
                 setBookId(response.data._id);
+                if (localStorage.getItem("user")) {
+                    setUserId(JSON.parse(localStorage.getItem("user")).result._id);
+                } else {
+                    setUserId("");
+                }
             })
             .catch((error) => {
                 console.log(error);
@@ -28,14 +31,13 @@ function ReviewBook(props) {
 
     function handleOnSubmit(e) {
         e.preventDefault();
-        axios.put("http://localhost:8000/api/reviews", {
+        axios.post("http://localhost:8000/api/reviews", {
             userId,
             bookId,
             rating,
             body
         })
             .then((response) => {
-                console.log("Added review to book " + book.title);
                 navigate("/reviews");
             })
             .catch((error) => {
@@ -48,18 +50,17 @@ function ReviewBook(props) {
         <Container>
             <h1>Review { book ? book.title : "N/A" }</h1>
             <Form onSubmit={handleOnSubmit}>
-                <Input type="text" id="userId" name="userId" value={userId} hidden/>
-                <Input type="text" id="bookId" name="bookId" value={bookId} hidden/>
+                <Input type="text" id="userId" name="userId" value={userId} hidden readOnly/>
+                <Input type="text" id="bookId" name="bookId" value={bookId} hidden readOnly/>
                 <FormGroup>
                     <Label htmlFor="rating">Rating</Label>
                     <Input
                         type="range"
                         min="1"
                         max="5"
-                        step="1"
+                        step="0.5"
                         id="rating"
                         name="rating"
-                        defaultValue="3"
                         value={rating}
                         onChange={(e) => setRating(e.target.value)}
                     />

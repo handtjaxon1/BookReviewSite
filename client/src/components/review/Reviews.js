@@ -9,8 +9,7 @@ function Reviews(params) {
     useEffect(() => {
         axios.get("http://localhost:8000/api/reviews")
             .then((response) => {
-                console.log("Retrieving all reviews");
-                console.log(response);
+                console.log("Retrieving all reviews...");
                 setReviews(response.data);
             })
             .catch((error) => {
