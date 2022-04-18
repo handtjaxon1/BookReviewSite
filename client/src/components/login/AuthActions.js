@@ -8,7 +8,7 @@ export const signIn = (formData, navigate) => async (dispatch) => {
             .then((user) => {
                 const { data } = user;
                 dispatch({ type: "AUTH", data });
-                navigate("/books");
+                navigate("/profile");
             })
             .catch((error) => {
                 console.log(error);
@@ -26,7 +26,7 @@ export const signUp = (formData, navigate) => async (dispatch) => {
             .then((user) => {
                 const { data } = user
                 dispatch({ type: "AUTH", data });
-                navigate("/books");
+                navigate("/profile");
             })
             .catch((error) => {
                 console.log(error);

@@ -5,7 +5,6 @@ import decode from "jwt-decode";
 import { Navbar, Nav, NavbarBrand, NavItem, NavLink, Container } from "reactstrap";
 
 function Navigation(props) {
-
     const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -49,6 +48,15 @@ function Navigation(props) {
                             <Link to={"/reviews"} className="link-light">Reviews</Link>
                         </NavLink>
                     </NavItem>
+                    { user && (
+                    <>
+                        <NavItem>
+                            <NavLink>
+                                <Link to={"/profile"} className="link-light">Profile</Link>
+                            </NavLink>
+                        </NavItem>
+                    </>
+                    )}
                     {/* Conditional rendering to show logout versus login depending on if the user is logged in */}
                     <NavItem>
                         <NavLink>
@@ -57,11 +65,6 @@ function Navigation(props) {
                                 :
                                 <Link to={"/auth"} className="link-light">Login</Link>
                             }
-                            {/* { loggedIn ?
-                                <Link to={"/"} onClick={(e) => setLoggedIn(false)} className="link-light">Logout</Link>
-                                :
-                                <Link to={"/login"} className="link-light">Login</Link>
-                            } */}
                         </NavLink>
                     </NavItem>
                 </Nav>

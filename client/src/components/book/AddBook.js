@@ -10,7 +10,6 @@ function AddBook(props) {
     const [author, setAuthor] = useState("");
     const [genre, setGenre] = useState("");
     const [description, setDescription] = useState("");
-    const token = JSON.parse(localStorage.getItem("user"));
 
     // Holds any server side validation errors
     const [errors, setErrors] = ([]);
@@ -20,8 +19,6 @@ function AddBook(props) {
 
     function handleOnSubmit(e) {
         e.preventDefault();
-        console.log("Hello");
-        console.log(token.token);
         axios.post("http://localhost:8000/api/books", {
             title,
             author,

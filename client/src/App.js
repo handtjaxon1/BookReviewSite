@@ -1,5 +1,4 @@
 // React imports
-import React, { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 
 // Component imports
@@ -15,13 +14,10 @@ import Profile from "./components/Profile";
 import Auth from "./components/login/Auth";
 
 function App() {
-  // State that tracks if the user is currently logged in
-  const [loggedIn, setLoggedIn] = useState(false);
-
   return (
     <div>
       {/* TODO Make the Navbar sticky to the top, and display as absolute so it sits on top of the other pages */}
-      <Navigation loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>
+      <Navigation />
       <Routes>
         <Route path="/" element={<Home />} default index/>
 
@@ -37,7 +33,7 @@ function App() {
 
         {/* User pages */}
         <Route path="/auth" element={<Auth />}/>
-        <Route path="/profile/:id" element={<Profile />}/>
+        <Route path="/profile" element={<Profile />}/>
       </Routes>
     </div>
   );
