@@ -28,7 +28,7 @@ function Navigation(props) {
     };
 
     return(
-        <Navbar className="navbar-dark bg-dark">
+        <Navbar className="navbar-dark bg-dark py-3">
             <Container className="d-flex justify-content-between align-items-center">
                 <NavbarBrand>
                     <Link to={"/"} className="link-light">

@@ -19,6 +19,7 @@ function AddReview(props) {
                 setBook(response.data);
                 setBookId(response.data._id);
                 if (localStorage.getItem("user")) {
+                    console.log(JSON.parse(localStorage.getItem("user")).result._id);
                     setUserId(JSON.parse(localStorage.getItem("user")).result._id);
                 } else {
                     setUserId("");

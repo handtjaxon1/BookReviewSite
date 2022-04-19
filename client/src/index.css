@@ -89,3 +89,7 @@ code {
 .cursor-pointer:hover {
   background-color: #e6e6e6de;
 }
+
+.custom-text-shadow {
+  text-shadow: 2px 2px #000000ea;
+}

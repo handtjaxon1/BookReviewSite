@@ -1,10 +1,12 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function FullBookReview(props) {
     const { review } = props;
     const [book, setBook] = useState({});
     const [user, setUser] = useState({});
+    const navigate = useNavigate();
 
     useEffect(() => {
         axios.get("http://localhost:8000/api/books/" + review.bookId)
@@ -24,8 +26,12 @@ function FullBookReview(props) {
             })
     }, []);
 
+    function viewBook() {
+        navigate(`/books/${review.bookId}`);
+    }
+
     return (
-        <div className="d-flex p-3 my-5 card-shadow card-border"> {/* Needs 1px, light, rounded, border and a shadow effect */}
+        <div className="d-flex p-3 my-5 card-shadow card-border cursor-pointer" onClick={viewBook}>
             <img src={process.env.PUBLIC_URL + "/BookCover_01.png"} alt="book-cover" className="book-cover"></img>
             <div className="w-100">
                 <div className="d-flex justify-content-between">

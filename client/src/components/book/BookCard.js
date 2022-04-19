@@ -14,9 +14,13 @@ function BookCard(props) {
         navigate(`/reviews/add/${book._id}`);
     };
 
+    function viewBook() {
+        navigate(`/books/${book._id}`);
+    };
+
     return (
         <Col className="col-md-3 col-sm-6 col-12 my-3">
-            <Card className="card-border card-shadow p-3 h-100">
+            <Card className="card-border card-shadow p-3 h-100 cursor-pointer" onClick={viewBook}>
                 <CardImg
                     src={process.env.PUBLIC_URL + "/BookCover_01.png"}
                     alt="book-cover"
