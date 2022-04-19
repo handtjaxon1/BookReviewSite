@@ -19,7 +19,7 @@ function Home(props) {
                 alignItems: "center"
             }}>
                 <h1 className="display-1 text-light py-5">Home page</h1>
-                <Link to={"/books"} className="btn btn-dark btn-lg my-5">Start Reading!</Link>
+                <Link to={"/books"} className="btn btn-dark btn-lg my-5">Start Reviewing!</Link>
             </div>
             {/* <img src="ReadingCoverImage.jpg" alt="large open book"></img> */}
         </div>

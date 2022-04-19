@@ -10,6 +10,7 @@ function AddBook(props) {
     const [author, setAuthor] = useState("");
     const [genre, setGenre] = useState("");
     const [description, setDescription] = useState("");
+    const [image, setImage] = useState("");
 
     // Holds any server side validation errors
     const [errors, setErrors] = ([]);
@@ -24,6 +25,7 @@ function AddBook(props) {
             author,
             genre,
             description,
+            image
         })
             .then((response) => {
                 console.log("Added book");
@@ -40,7 +42,7 @@ function AddBook(props) {
     return (
         <Container className="py-5">
             <h1>Add Book</h1>
-            <Form onSubmit={handleOnSubmit}>
+            <Form onSubmit={handleOnSubmit} encType="multipart/form-data">
                 <FormGroup>
                     <Label htmlFor="title">Title</Label>
                     <Input
@@ -92,6 +94,16 @@ function AddBook(props) {
                         name="description"
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
+                    />
+                </FormGroup>
+                <FormGroup>
+                    <Label htmlFor="image">Cover Image</Label>
+                    <Input
+                        type="file"
+                        id="image"
+                        name="image"
+                        value={image}
+                        onChange={(e) => setImage(e.target.value)}
                     />
                 </FormGroup>
                 <div className="row justify-content-center">

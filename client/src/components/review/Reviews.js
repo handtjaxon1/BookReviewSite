@@ -18,7 +18,7 @@ function Reviews(params) {
     }, []);
 
     return (
-        <Container>
+        <Container className="py-5">
             <h1 className="text-center">Latest Reviews</h1>
             <div>
                 {/* Add a row for each review in the database */}

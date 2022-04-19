@@ -9,7 +9,8 @@ import AddBook from "./components/book/AddBook";
 import EditBook from "./components/book/EditBook";
 import ViewBook from "./components/book/ViewBook";
 import Reviews from "./components/review/Reviews";
-import ReviewBook from "./components/review/ReviewBook";
+import AddReview from "./components/review/AddReview";
+import EditReview from "./components/review/EditReview";
 import Profile from "./components/profile/Profile";
 import Auth from "./components/login/Auth";
 
@@ -29,7 +30,8 @@ function App() {
 
         {/* Review pages */}
         <Route path="/reviews" element={<Reviews />} />
-        <Route path="/reviews/add/:id" element={<ReviewBook />} />
+        <Route path="/reviews/add/:id" element={<AddReview />} />
+        <Route path="/reviews/:id/edit" element={<EditReview />} />
 
         {/* User pages */}
         <Route path="/auth" element={<Auth />}/>

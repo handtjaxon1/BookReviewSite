@@ -17,11 +17,17 @@ function BookRowActions(props) {
     function deleteBook(id) {
         axios.delete("http://localhost:8000/api/books/" + id)
             .then((response) => {
+                axios.delete("http://localhost:8000/api/reviews/book/" + id)
+                    .then((response) => {
+                        console.log("Deleted all reviews for the book too");
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    })
                 navigate("/books") // Refreshes the page
             })
             .catch((error) => {
                 console.log(error);
-                // TODO Consider navigating to an error page based on the status of the response
             })
     };
 

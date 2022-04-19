@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Container, Form, Button } from "reactstrap";
+import { Container, Form, Button, Alert } from "reactstrap";
 import { GoogleLogin } from "react-google-login";
 import { useDispatch } from "react-redux";
 import AuthInput from "./AuthInput";
@@ -13,6 +13,7 @@ function Auth(props) {
     const [formData, setFormData] = useState(initialState);
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const [errors, setErrors] = useState([]);
 
     function handleOnSubmit(e) {
         e.preventDefault();

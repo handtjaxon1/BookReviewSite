@@ -11,6 +11,8 @@ app.use(express.urlencoded({extended: true}));
 const cors = require("cors");
 app.use(cors());
 
+const imageUpload = require("./middleware/image.middleware");
+
 // TODO Consider refactoring routes to use express.Router. So these lines would look like 'app.use()
 // Load in the routes for the project
 require("./routes/user.routes")(app);

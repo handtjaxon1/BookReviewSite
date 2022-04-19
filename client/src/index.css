@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #F7F7F7!important;
 }
 
 code {
@@ -25,6 +26,10 @@ code {
 /* Book related styles */
 .book-title {
   font-size: 2.5rem;
+}
+
+.book-title-sm {
+  font-size: 2.25rem;
 }
 
 .book-subheader {
@@ -50,6 +55,11 @@ code {
   width: 256px;
 }
 
+.book-cover-sm {
+  height: 128px;
+  width: 128px;
+}
+
 /* Review related styles */
 .review-name {
   font-size: 1.5rem;
@@ -70,4 +80,12 @@ code {
 
 .preserve-whitespace {
   white-space: pre-wrap;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.cursor-pointer:hover {
+  background-color: #e6e6e6de;
 }

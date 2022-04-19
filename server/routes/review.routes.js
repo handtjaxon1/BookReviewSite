@@ -8,5 +8,6 @@ module.exports = (app) => {
     app.get("/api/reviews/book/:bookId", ReviewController.getReviewsByBook);
     app.get("/api/reviews/:id", ReviewController.getReviewById);
     app.put("/api/reviews/:id", ReviewController.updateReview);
-    app.put("/api/reviews/:id", ReviewController.deleteReview);
+    app.delete("/api/reviews/:id", ReviewController.deleteReview);
+    app.delete("/api/reviews/book/:bookId", ReviewController.deleteReviewsByBook);
 }

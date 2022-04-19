@@ -78,5 +78,15 @@ module.exports = {
             .catch((error) => {
                 console.log(error);
             })
+    },
+    // Delete all reviews for a book
+    deleteReviewsByBook: (request, response) => {
+        Review.deleteMany({ bookId: request.params.bookId })
+            .then((reviews) => {
+                response.json(reviews);
+            })
+            .catch((error) => {
+                console.log(error);
+            })
     }
 }

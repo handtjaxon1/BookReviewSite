@@ -1,9 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
-import { Container, Form, FormGroup, Label, Input, Button } from "reactstrap";
+import { Container, Form, FormGroup, Label, Input, Button, Alert } from "reactstrap";
 
-function ReviewBook(props) {
+function EditReview(props) {
     const { id } = useParams();
     const [book, setBook] = useState({});
     const [userId, setUserId] = useState("");
@@ -14,31 +14,36 @@ function ReviewBook(props) {
     const navigate = useNavigate();
 
     useEffect(() => {
-        axios.get("http://localhost:8000/api/books/" + id)
+        axios.get("http://localhost:8000/api/reviews/" + id)
             .then((response) => {
-                setBook(response.data);
-                setBookId(response.data._id);
-                if (localStorage.getItem("user")) {
-                    setUserId(JSON.parse(localStorage.getItem("user")).result._id);
-                } else {
-                    setUserId("");
-                }
+                setRating(response.data.rating);
+                setBody(response.data.body);
+                setUserId(response.data.userId);
+                setBookId(response.data.bookId);
+
+                axios.get("http://localhost:8000/api/books/" + response.data.bookId)
+                .then((response) => {
+                    setBook(response.data);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
             })
             .catch((error) => {
                 console.log(error);
-            });
+            })
     }, []);
 
     function handleOnSubmit(e) {
         e.preventDefault();
-        axios.post("http://localhost:8000/api/reviews", {
+        axios.put("http://localhost:8000/api/reviews/" + id, {
             userId,
             bookId,
             rating,
             body
         })
             .then((response) => {
-                navigate("/reviews");
+                navigate("/profile");
             })
             .catch((error) => {
                 console.log(error);
@@ -64,6 +69,10 @@ function ReviewBook(props) {
                         value={rating}
                         onChange={(e) => setRating(e.target.value)}
                     />
+                    { errors.rating ?
+                        <Alert color="danger">{errors.rating.message}</Alert>
+                        : null
+                    }
                 </FormGroup>
                 <FormGroup>
                     <Label>Review</Label>
@@ -76,14 +85,18 @@ function ReviewBook(props) {
                         value={body}
                         onChange={(e) => setBody(e.target.value)}
                     />
+                    { errors.body ?
+                        <Alert color="danger">{errors.body.message}</Alert>
+                        : null
+                    }
                 </FormGroup>
                 <div className="row justify-content-center">
-                    <Button type="submit" color="dark" className="col-2 mx-2">Submit</Button>
-                    <Link to={"/books"} className="btn btn-dark col-2 mx-2">Cancel</Link>
+                    <Button type="submit" color="dark" className="col-2 mx-2">Update</Button>
+                    <Link to={"/profile"} className="btn btn-dark col-2 mx-2">Cancel</Link>
                 </div>
             </Form>
         </Container>
     );
 }
 
-export default ReviewBook;
+export default EditReview;

@@ -35,7 +35,6 @@ function EditBook(props) {
             description: book.description
         })
             .then((response) => {
-                console.log(response.data);
                 navigate("/books");
             })
             .catch((error) => {
